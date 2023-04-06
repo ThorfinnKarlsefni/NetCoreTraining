@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CancelLationToken", "..\Can
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhenAll", "..\WhenAll\WhenAll.csproj", "{4BBBB5F5-9020-4A37-9F9A-B81C14C2AE37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncQuestion", "..\AsyncQuestion\AsyncQuestion.csproj", "{C5800DF0-EAC3-4EA6-8147-B51C8875759D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{4BBBB5F5-9020-4A37-9F9A-B81C14C2AE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BBBB5F5-9020-4A37-9F9A-B81C14C2AE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BBBB5F5-9020-4A37-9F9A-B81C14C2AE37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5800DF0-EAC3-4EA6-8147-B51C8875759D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5800DF0-EAC3-4EA6-8147-B51C8875759D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5800DF0-EAC3-4EA6-8147-B51C8875759D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5800DF0-EAC3-4EA6-8147-B51C8875759D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
