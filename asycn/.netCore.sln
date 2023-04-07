@@ -17,11 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhenAll", "..\WhenAll\WhenA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncQuestion", "..\AsyncQuestion\AsyncQuestion.csproj", "{C5800DF0-EAC3-4EA6-8147-B51C8875759D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "..\Delegate\Delegate.csproj", "{71C23206-4B60-4695-BBB9-65F9459B6BFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delegate", "..\Delegate\Delegate.csproj", "{71C23206-4B60-4695-BBB9-65F9459B6BFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleageAndLambda", "..\DeleageAndLambda\DeleageAndLambda.csproj", "{D1F47F87-463A-4A90-9557-2183FBA0440B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeleageAndLambda", "..\DeleageAndLambda\DeleageAndLambda.csproj", "{D1F47F87-463A-4A90-9557-2183FBA0440B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "..\Linq\Linq.csproj", "{4F151E3E-B3A7-4D74-BA58-C78FF0CFE2E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linq", "..\Linq\Linq.csproj", "{4F151E3E-B3A7-4D74-BA58-C78FF0CFE2E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

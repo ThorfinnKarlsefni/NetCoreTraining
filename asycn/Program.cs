@@ -12,8 +12,8 @@ internal class Program
 
         // async 
         await File.WriteAllTextAsync(filename, @"life's little bit messy.we all make mistakes");
-        string s = await File.ReadAllTextAsync(filename);
-        Console.WriteLine(s);
+        string str = await File.ReadAllTextAsync(filename);
+        Console.WriteLine(str);
     }
 
 }

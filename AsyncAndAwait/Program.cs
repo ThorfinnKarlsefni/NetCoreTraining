@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 
 internal class Program
 {
+    static void Main() { }
 
     static async void AsyncAndAwait()
     {
