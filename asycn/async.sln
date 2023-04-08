@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeleageAndLambda", "..\Dele
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linq", "..\Linq\Linq.csproj", "{4F151E3E-B3A7-4D74-BA58-C78FF0CFE2E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq1", "..\Linq1\Linq1.csproj", "{91502BB7-F2DE-4A9F-A8F5-71C36467CE8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqCommonMethod", "..\Linq1\LinqCommonMethod.csproj", "{91502BB7-F2DE-4A9F-A8F5-71C36467CE8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
