@@ -103,7 +103,43 @@ namespace LinqCommonMethod
                 Console.WriteLine
                 ("*******************");
             }
+
+            // 投影
+
+            // 把集合中的每一项转换为另外一种类型 类似查询语句
+            IEnumerable<int> ages = list.Select(e => e.Age);
+            IEnumerable<string> names = list.Where(e => e.Age > 30).Select(e => e.Name+","+e.Age);
+
+            IEnumerable<string> gender = list.Where(e => e.Salary > 5000).Select(e => e.Gender ? "男" : "女");
+            foreach (var i in ages)
+            {
+                Console.WriteLine(i);
+            }
+
+            // var 是编译器确定类型
+            //如 object obj = new { Name = "Chueng", Age = 21 };
+            // console.WriteLine(obj.name) 编译不通过
+
+            IEnumerable<Dog> dog = list.Select(e => new Dog { Nickname = e.Name, Age = e.Age });
+            foreach (var d in dog)
+            {
+                Console.WriteLine($"{d.Nickname},{d.Age}");
+            }
+           
+
+            var fin = list.GroupBy(e => e.Age).Select(g => new { Nianling = g.Key, MaxS = g.Max(e => e.Salary), MinS = g.Min(e => e.Salary), Count = g.Count() });
+           
+            foreach(var e in fin)
+            {
+                Console.WriteLine(e.Nianling + "," + e.MaxS + "," + e.MinS + "," + e.Count);
+            }    
         }
+    }
+
+    class Dog
+    {
+        public string Nickname { get; set; } 
+        public int Age { get;set; }
     }
 
     class Employee
