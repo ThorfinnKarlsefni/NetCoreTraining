@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.Net.Cache;
 using System.Security.Cryptography;
 
@@ -25,7 +26,7 @@ namespace LinqCommonMethod
             }
 
             // lambda count
-            Console.WriteLine(list.Count(e=>e.Age>20));
+            Console.WriteLine(list.Count(e => e.Age > 20));
             Console.WriteLine(list.Count(e => e.Age > 20 && e.Salary > 6000));
 
             // any 是否至少有一条数据 返回bool
@@ -34,16 +35,16 @@ namespace LinqCommonMethod
 
 
             // single grammar
-            IEnumerable<Employee> el = list.Where(e =>e.Name == "jerry");
-            Console.WriteLine(list.Single(e=>e.Name=="jerry"));
+            IEnumerable<Employee> el = list.Where(e => e.Name == "jerry");
+            Console.WriteLine(list.Single(e => e.Name == "jerry"));
             // single default,return null
-            Console.WriteLine(list.SingleOrDefault(e=>e.Name == "askeladd") == null);
+            Console.WriteLine(list.SingleOrDefault(e => e.Name == "askeladd") == null);
 
             int[] nums = new int[] { 3, 4, 5 };
             // 一条都没有返回 int 默认值
-            int i = nums.SingleOrDefault(i => i>10);
+            int i = nums.SingleOrDefault(i => i > 10);
             Console.WriteLine(i);
-            Console.WriteLine(nums.SingleOrDefault(i=>i>10));
+            Console.WriteLine(nums.SingleOrDefault(i => i > 10));
 
             // First and firstOrDefault
             // First 如果没有报错 FirstOrDefault 如果没有返回空
@@ -51,7 +52,7 @@ namespace LinqCommonMethod
             Console.WriteLine(list.FirstOrDefault(e => e.Age > 40));
 
             // order 返回新数据 旧数据不受影响
-            IEnumerable<Employee> item2 = list.OrderBy(e=>e.Age);
+            IEnumerable<Employee> item2 = list.OrderBy(e => e.Age);
 
             foreach (Employee el2 in item2)
             {
@@ -60,14 +61,14 @@ namespace LinqCommonMethod
 
             // order desc
             IEnumerable<Employee> itme3 = list.OrderByDescending(e => e.Age);
-            int[] num = new int[] { 3, 4, 5 ,3213, 32, 31};
+            int[] num = new int[] { 3, 4, 5, 3213, 32, 31 };
 
             IEnumerable<int> num2 = num.OrderBy(i => i);
             // Randdom
             var rand = new Random();
             var r = list.OrderByDescending(i => rand.Next());
-            
-            var item3 = list.OrderByDescending(e =>  Guid.NewGuid());
+
+            var item3 = list.OrderByDescending(e => Guid.NewGuid());
 
             // 最后字母的排序
             var letter = list.OrderByDescending(i => i.Name[i.Name.Length - 1]);
@@ -92,7 +93,7 @@ namespace LinqCommonMethod
             // group by 
             // select age,max(salary) from t group by salary
             IEnumerable<IGrouping<int, Employee>> items = list.GroupBy(e => e.Age);
-            foreach (IGrouping<int,Employee> x in items)
+            foreach (IGrouping<int, Employee> x in items)
             {
                 Console.WriteLine(x.Key);
                 Console.WriteLine("最大工资" + x.Max(e => e.Salary));
@@ -108,7 +109,7 @@ namespace LinqCommonMethod
 
             // 把集合中的每一项转换为另外一种类型 类似查询语句
             IEnumerable<int> ages = list.Select(e => e.Age);
-            IEnumerable<string> names = list.Where(e => e.Age > 30).Select(e => e.Name+","+e.Age);
+            IEnumerable<string> names = list.Where(e => e.Age > 30).Select(e => e.Name + "," + e.Age);
 
             IEnumerable<string> gender = list.Where(e => e.Salary > 5000).Select(e => e.Gender ? "男" : "女");
             foreach (var z in ages)
@@ -125,11 +126,11 @@ namespace LinqCommonMethod
             {
                 Console.WriteLine($"{d.Nickname},{d.Age}");
             }
-           
+
 
             var fin = list.GroupBy(e => e.Age).Select(g => new { Nianling = g.Key, MaxS = g.Max(e => e.Salary), MinS = g.Min(e => e.Salary), Count = g.Count() });
-           
-            foreach(var e in fin)
+
+            foreach (var e in fin)
             {
                 Console.WriteLine(e.Nianling + "," + e.MaxS + "," + e.MinS + "," + e.Count);
             }
@@ -155,6 +156,36 @@ namespace LinqCommonMethod
                 //Console.WriteLine(p.Age + p.Count + p.avg);
                 Console.WriteLine(p);
             }
+
+            // select query
+
+            var query = from e in list
+                        where e.Salary > 5000
+                        select new
+                        {
+                            e.Name, e.Age, Gender = e.Gender ? "男" : "女"
+                        };
+
+            // homework 
+
+            string str = "61,90,100,99,18,22,38,66,80,93,55,50,89";
+            string[] arr = str.Split(",");
+            IEnumerable<int> res = arr.Select(e=>Convert.ToInt32(e));
+            Console.WriteLine(res.Average());
+
+            double avg = str.Split(",").Select(e => Convert.ToInt32(e)).Average();
+            Console.WriteLine(avg);
+
+            // homework
+
+            string str3 = "life's little bit messy.we all make mistake";
+            var res2 = str3.Where(c => char.IsLetter(c)).Select(c => char.ToLower(c)).GroupBy(c => c).Select(g => new { g.Key, Count = g.Count() }).OrderByDescending(g=>g.Count).Where(g=>g.Count>3);
+
+            foreach (var result in res2)
+            {
+                Console.WriteLine(result);
+            }
+            
         }
     }
 
