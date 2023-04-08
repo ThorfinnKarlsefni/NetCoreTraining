@@ -12,11 +12,12 @@ namespace LinqCommonMethod
 
             list.Add(new Employee { Id = 1, Name = "jerry", Age = 30, Gender = true, Salary = 5000 });
             list.Add(new Employee { Id = 2, Name = "jimmy", Age = 31, Gender = true, Salary = 8000 });
-            list.Add(new Employee { Id = 2, Name = "Cheung", Age = 25, Gender = false, Salary = 6000 });
-            list.Add(new Employee { Id = 2, Name = "ziming", Age = 23, Gender = true, Salary = 300 });
-            list.Add(new Employee { Id = 2, Name = "hha", Age = 18, Gender = false, Salary = 2000 });
+            list.Add(new Employee { Id = 3, Name = "Cheung", Age = 25, Gender = false, Salary = 6000 });
+            list.Add(new Employee { Id = 4, Name = "ziming", Age = 23, Gender = true, Salary = 300 });
+            list.Add(new Employee { Id = 5, Name = "hha", Age = 18, Gender = false, Salary = 2000 });
+            list.Add(new Employee { Id = 6, Name = "hani", Age = 18, Gender = false, Salary = 2000 });
 
-            IEnumerable<Employee> l = list.Where(e => e.Age > 20);
+            /*IEnumerable<Employee> l = list.Where(e => e.Age > 20);
 
             foreach (Employee e in l)
             {
@@ -77,7 +78,31 @@ namespace LinqCommonMethod
 
             // 限制结果集
             var Skip = list.Skip(3); //Take(2);
-            var SkipAndTake = list.Skip(3).Take(2);
+            var SkipAndTake = list.Skip(3).Take(2);*/
+
+            // 聚合函数 Max() Min Average Sum Count
+
+            var item = list.Max(e => e.Age);
+            Console.WriteLine(item);
+            int a = list.Where(e => e.Id > 3).Max(e => e.Salary);
+            Console.WriteLine(a);
+            string s = list.Max(e => e.Name); //字符串比较大小
+            Console.WriteLine(s);
+
+            // group by 
+            // select age,max(salary) from t group by salary
+            IEnumerable<IGrouping<int, Employee>> items = list.GroupBy(e => e.Age);
+            foreach (IGrouping<int,Employee> i in items)
+            {
+                Console.WriteLine(i.Key);
+                Console.WriteLine("最大工资" + i.Max(e => e.Salary));
+                foreach (Employee e in i)
+                {
+                    Console.WriteLine(e);
+                }
+                Console.WriteLine
+                ("*******************");
+            }
         }
     }
 
