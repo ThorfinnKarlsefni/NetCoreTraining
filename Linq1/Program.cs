@@ -17,7 +17,7 @@ namespace LinqCommonMethod
             list.Add(new Employee { Id = 5, Name = "hha", Age = 18, Gender = false, Salary = 2000 });
             list.Add(new Employee { Id = 6, Name = "hani", Age = 18, Gender = false, Salary = 2000 });
 
-            /*IEnumerable<Employee> l = list.Where(e => e.Age > 20);
+            IEnumerable<Employee> l = list.Where(e => e.Age > 20);
 
             foreach (Employee e in l)
             {
@@ -78,7 +78,7 @@ namespace LinqCommonMethod
 
             // 限制结果集
             var Skip = list.Skip(3); //Take(2);
-            var SkipAndTake = list.Skip(3).Take(2);*/
+            var SkipAndTake = list.Skip(3).Take(2);
 
             // 聚合函数 Max() Min Average Sum Count
 
@@ -92,11 +92,11 @@ namespace LinqCommonMethod
             // group by 
             // select age,max(salary) from t group by salary
             IEnumerable<IGrouping<int, Employee>> items = list.GroupBy(e => e.Age);
-            foreach (IGrouping<int,Employee> i in items)
+            foreach (IGrouping<int,Employee> x in items)
             {
-                Console.WriteLine(i.Key);
-                Console.WriteLine("最大工资" + i.Max(e => e.Salary));
-                foreach (Employee e in i)
+                Console.WriteLine(x.Key);
+                Console.WriteLine("最大工资" + x.Max(e => e.Salary));
+                foreach (Employee e in x)
                 {
                     Console.WriteLine(e);
                 }
@@ -111,9 +111,9 @@ namespace LinqCommonMethod
             IEnumerable<string> names = list.Where(e => e.Age > 30).Select(e => e.Name+","+e.Age);
 
             IEnumerable<string> gender = list.Where(e => e.Salary > 5000).Select(e => e.Gender ? "男" : "女");
-            foreach (var i in ages)
+            foreach (var z in ages)
             {
-                Console.WriteLine(i);
+                Console.WriteLine(z);
             }
 
             // var 是编译器确定类型
@@ -132,7 +132,29 @@ namespace LinqCommonMethod
             foreach(var e in fin)
             {
                 Console.WriteLine(e.Nianling + "," + e.MaxS + "," + e.MinS + "," + e.Count);
-            }    
+            }
+
+            // toList  toArray
+
+            // where select OrderBy GroupBy Take Skip
+            // 返回的都是 IEnumerable<T> 类型
+            // GroupBy : [(key,e)]
+            // IEnumerable<IGrouping<int,Employee>>
+            IEnumerable<Employee> data = list.Where(e => e.Salary > 6000);
+            List<Employee> list2 = data.ToList();
+            Employee[] list3 = data.ToArray();
+
+            //获取id>2的数据 然后照age分组 并且把分组按照age排序 然后取出前3条 最后在投影去的年龄、人数、平均工资
+
+            // 这语法糖甜死我了
+
+            var person = list.Where(e => e.Id > 2).GroupBy(e => e.Age).OrderBy(g => g.Key).Take(3).Select(g => new { Age = g.Key, Count = g.Count(), avg = g.Average(g => g.Salary) });
+
+            foreach (var p in person)
+            {
+                //Console.WriteLine(p.Age + p.Count + p.avg);
+                Console.WriteLine(p);
+            }
         }
     }
 
