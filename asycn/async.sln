@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ioc", "..\ioc\ioc.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceInterface", "..\ServiceInterface\ServiceInterface.csproj", "{7D7025F9-5D32-4D17-B635-EF68B11AF82C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "di", "..\di\di.csproj", "{39ADFDFE-54D4-4457-92EC-52F63F18288B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{7D7025F9-5D32-4D17-B635-EF68B11AF82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D7025F9-5D32-4D17-B635-EF68B11AF82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D7025F9-5D32-4D17-B635-EF68B11AF82C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39ADFDFE-54D4-4457-92EC-52F63F18288B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39ADFDFE-54D4-4457-92EC-52F63F18288B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39ADFDFE-54D4-4457-92EC-52F63F18288B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39ADFDFE-54D4-4457-92EC-52F63F18288B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
