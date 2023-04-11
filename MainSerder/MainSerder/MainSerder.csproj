@@ -14,4 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MailServices\MailServices.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="mai.ini" />
+  </ItemGroup>
 </Project>
