@@ -1,6 +1,7 @@
 ﻿namespace MainSerder;
 using Microsoft.Extensions.DependencyInjection;
 using MailServices;
+using ConfigServices;
 
 class Program
 {
@@ -10,9 +11,10 @@ class Program
         // 注册服务
 
         // config
-        // services.AddScoped<IConfigService,EnvVarConfigService>();
+        services.AddScoped<IConfigService, EnvVarConfigService>();
         // services.AddScoped(typeof(IConfigService),s=>new FileConfigService {FilePath = "mail.ini"});
         services.ConsoleFileConfig("mail.ini");
+        services.AddLayeredConfig();
         // mail server
         services.AddScoped<IMailService, MailService>();
 
