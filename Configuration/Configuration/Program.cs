@@ -1,15 +1,40 @@
 ﻿namespace Configuration;
 
-using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 class Program
 {
     static void Main(string[] args)
     {
+
         ConfigurationBuilder configBuilder = new ConfigurationBuilder();
         
-        configBuilder.AddJsonFile("config.json", optional: true, reloadOnChange: true);
+        configBuilder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
         IConfigurationRoot ConfigRoot = configBuilder.Build();
+        // Monitor 及时更新
+        // Snapshot 在一个范围内 一次http请求
+        // 建议使用 IOptionsSnashot
+        ServiceCollection services = new ServiceCollection();
+        services.AddScoped<Demo>();
+        services.AddOptions().Configure<DbSettings>(e => ConfigRoot.GetSection("DB").Bind(e));
+        services.AddOptions().Configure<SmtpSettings>(e => ConfigRoot.GetSection("Smtp").Bind(e));
+
+        using (var sp = services.BuildServiceProvider())
+        {
+            Console.WriteLine(sp);
+            while (true)
+            {
+                using (var scope = sp.CreateScope())
+                {
+                    var spScope = scope.ServiceProvider;
+                    var demo = spScope.GetRequiredService<Demo>();
+                    demo.Test();
+                }
+            }
+            Console.WriteLine("可以改配置啦");
+            Console.ReadKey();
+        }
+        /*
         string name = ConfigRoot["name"];
         Console.WriteLine(name);
         string address = ConfigRoot.GetSection("proxy:address").Value;
@@ -27,6 +52,10 @@ class Program
         Console.WriteLine(config.Age);
         Console.WriteLine(config.Proxy.Address);
         Console.ReadKey();
+        */
+
+       
+
     }
 }
 
