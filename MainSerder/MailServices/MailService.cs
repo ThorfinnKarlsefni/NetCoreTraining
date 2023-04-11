@@ -5,10 +5,12 @@ namespace MailServices
 {
 	public class MailService :IMailService
 	{
+		// 如无必要 勿增实体
 		private readonly ILogProvider log;
-		private readonly IConfigService config;
+		//private readonly IConfigService config;
+		private readonly IConfigReader config;
 
-		public MailService(ILogProvider log,IConfigService config)
+		public MailService(ILogProvider log,IConfigReader config)
 		{
 			this.log = log;
 			this.config = config;
@@ -18,8 +20,8 @@ namespace MailServices
 		{
 			this.log.LogInfo("ready!send mail");
 			string smtpServer = this.config.GetValue("SmtpServer");
-			string username = this.config.GetValue("UserNmae");
-			string password = this.config.GetValue("Passwordd");
+			string username = this.config.GetValue("UserName");
+			string password = this.config.GetValue("Password");
 
 			Console.WriteLine($"mail address {smtpServer},{username},{password}");
 
