@@ -5,6 +5,9 @@ namespace Configuration
 {
     public class Demo
 	{
+        // Monitor 及时更新
+        // Snapshot 在一个范围内 一次http请求
+        // 建议使用 IOptionsSnashot
         private readonly IOptionsSnapshot<DbSettings> optDbSettings;
         private readonly IOptionsSnapshot<SmtpSettings> optSmtpSettings;
         public Demo(IOptionsSnapshot<DbSettings> optDbSettings,

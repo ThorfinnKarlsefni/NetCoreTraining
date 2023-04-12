@@ -8,12 +8,27 @@ class Program
     {
 
         ConfigurationBuilder configBuilder = new ConfigurationBuilder();
-        
+
+
+        // read environment
+        // add prefix
+        configBuilder.AddEnvironmentVariables("TEST_");
+        IConfigurationRoot ConfigRoot = configBuilder.Build();
+        string Name = ConfigRoot["Name"];
+        Console.WriteLine($"Name:{Name}");
+        Console.ReadKey();
+
+        // read command
+        configBuilder.AddCommandLine(args);
+        IConfigurationRoot ConfigRoot = configBuilder.Build();
+        string server = ConfigRoot["sever"];
+        Console.WriteLine($"server:{server}");
+        Console.Read();
+
+        //// read json
+        //// 注册服务
         configBuilder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
         IConfigurationRoot ConfigRoot = configBuilder.Build();
-        // Monitor 及时更新
-        // Snapshot 在一个范围内 一次http请求
-        // 建议使用 IOptionsSnashot
         ServiceCollection services = new ServiceCollection();
         services.AddScoped<Demo>();
         services.AddOptions().Configure<DbSettings>(e => ConfigRoot.GetSection("DB").Bind(e));
@@ -30,11 +45,11 @@ class Program
                     var demo = spScope.GetRequiredService<Demo>();
                     demo.Test();
                 }
+                Console.WriteLine("可以改配置啦");
+                Console.ReadKey();
             }
-            Console.WriteLine("可以改配置啦");
-            Console.ReadKey();
         }
-        /*
+
         string name = ConfigRoot["name"];
         Console.WriteLine(name);
         string address = ConfigRoot.GetSection("proxy:address").Value;
@@ -52,10 +67,6 @@ class Program
         Console.WriteLine(config.Age);
         Console.WriteLine(config.Proxy.Address);
         Console.ReadKey();
-        */
-
-       
-
     }
 }
 
