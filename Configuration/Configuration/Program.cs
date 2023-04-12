@@ -6,13 +6,27 @@ class Program
 {
     static void Main(string[] args)
     {
+        ServiceCollection services = new ServiceCollection();
+        services.AddScoped<TestWebConfig>();
 
         ConfigurationBuilder configBuilder = new ConfigurationBuilder();
+        
+        configBuilder.Add(new FxConfigSource() { Path="web.config"});
+        IConfigurationRoot configRoot = configBuilder.Build();
+        services.AddOptions().Configure<WebConfig>(e => configRoot.Bind(e));
 
+        using (var sp = services.BuildServiceProvider())
+        {
+            var c = sp.GetRequiredService<TestWebConfig>();
+            Console.WriteLine(c);
+            c.Test();
+        }
 
-        // read environment
-        // add prefix
-        configBuilder.AddEnvironmentVariables("TEST_");
+        Console.ReadKey();
+
+            // read environment
+            // add prefix
+            configBuilder.AddEnvironmentVariables("TEST_");
         IConfigurationRoot ConfigRoot = configBuilder.Build();
         string Name = ConfigRoot["Name"];
         Console.WriteLine($"Name:{Name}");
@@ -20,16 +34,16 @@ class Program
 
         // read command
         configBuilder.AddCommandLine(args);
-        IConfigurationRoot ConfigRoot = configBuilder.Build();
+        //IConfigurationRoot ConfigRoot = configBuilder.Build();
         string server = ConfigRoot["sever"];
         Console.WriteLine($"server:{server}");
         Console.Read();
 
-        //// read json
-        //// 注册服务
+        // read json
+        // 注册服务
         configBuilder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-        IConfigurationRoot ConfigRoot = configBuilder.Build();
-        ServiceCollection services = new ServiceCollection();
+        //IConfigurationRoot ConfigRoot = configBuilder.Build();
+        
         services.AddScoped<Demo>();
         services.AddOptions().Configure<DbSettings>(e => ConfigRoot.GetSection("DB").Bind(e));
         services.AddOptions().Configure<SmtpSettings>(e => ConfigRoot.GetSection("Smtp").Bind(e));
@@ -70,7 +84,7 @@ class Program
     }
 }
 
-class Config
+public class Config
 {
     public string Name { get; set; }
     public int Age { get; set; }
@@ -78,7 +92,7 @@ class Config
     
 }
 
-class Proxy
+public class Proxy
 {
     public string Address { get; set; }
     public int Port { get; set; }
