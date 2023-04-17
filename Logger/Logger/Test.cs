@@ -30,8 +30,6 @@ namespace Logger
 				logger.LogError(es,"read file error");
 			}
 			Console.Read();
-
 		}
 	}
 }
-
