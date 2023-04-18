@@ -1,0 +1,10 @@
+2023-04-18 14:33:26.650 +08:00 [INF] start conect
+2023-04-18 14:33:26.676 +08:00 [INF] conect mysql
+2023-04-18 14:33:26.676 +08:00 [INF] select database
+2023-04-18 14:33:26.676 +08:00 [INF] life's little bit messy.we all make mistake
+2023-04-18 14:33:26.676 +08:00 [INF] processed {"Name":"jimmy","Age":"18","Message":"life's little bit messy.we all make mistake","$type":"User"}
+2023-04-18 14:36:57.553 +08:00 [INF] start conect
+2023-04-18 14:36:57.579 +08:00 [INF] conect mysql
+2023-04-18 14:36:57.579 +08:00 [INF] select database
+2023-04-18 14:36:57.579 +08:00 [INF] life's little bit messy.we all make mistake
+2023-04-18 14:36:57.580 +08:00 [INF] processed {"Name":"jimmy","Age":"18","Message":"life's little bit messy.we all make mistake","$type":"User"}
