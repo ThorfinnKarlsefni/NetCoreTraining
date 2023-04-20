@@ -9,6 +9,9 @@ namespace EFCore
 		public double Price { get; set; }
 
 		public string AuthorName { get; set; }
+
+		public string lyric { get; set; }
+		public string mins { get; set; }
 	}
 }
 
