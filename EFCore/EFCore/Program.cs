@@ -1,5 +1,6 @@
 ﻿
 using EFCore;
+using Microsoft.EntityFrameworkCore;
 
 await using (MyDbContext ctx = new MyDbContext())
 {
@@ -67,7 +68,10 @@ await using (MyDbContext ctx = new MyDbContext())
     Console.WriteLine(rabbit.Id);
     ctx.Add(rabbit);
     await ctx.SaveChangesAsync();
-    Console.WriteLine(rabbit.Id);
+
+    // select only
+    var str = ctx.Books.Where(b=>b.AuthorName == "清白之年");
+    Console.WriteLine(str.ToQueryString());
     Console.ReadKey();
 
 }

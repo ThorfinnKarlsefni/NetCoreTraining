@@ -14,6 +14,14 @@ namespace EFCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
+            // select query log
+
+            //optionsBuilder.LogTo(msg =>
+            //{
+            //    Console.WriteLine(msg);
+            //});
+
             base.OnConfiguring(optionsBuilder);
         // database = DemoDb
         // Initial Catalog=Demodb
