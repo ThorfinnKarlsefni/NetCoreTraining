@@ -63,25 +63,6 @@ namespace EFCore.Migrations
                     b.ToTable("T_books", (string)null);
                 });
 
-            modelBuilder.Entity("EFCore.Brid", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("T_brids", "demo");
-                });
-
             modelBuilder.Entity("EFCore.Person", b =>
                 {
                     b.Property<long>("Id")
@@ -106,6 +87,21 @@ namespace EFCore.Migrations
                     b.ToTable("T_Persons", (string)null);
                 });
 
+            modelBuilder.Entity("EFCore.Rabbit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_rabbits", (string)null);
+                });
+
             modelBuilder.Entity("EFCore.Song", b =>
                 {
                     b.Property<string>("Id")
@@ -126,23 +122,6 @@ namespace EFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_songs", (string)null);
-                });
-
-            modelBuilder.Entity("EFCore.Test", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("T_test");
                 });
 #pragma warning restore 612, 618
         }

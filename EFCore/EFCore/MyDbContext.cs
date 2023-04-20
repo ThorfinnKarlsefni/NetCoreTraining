@@ -5,6 +5,7 @@ namespace EFCore
 {
 	public class MyDbContext:DbContext
 	{
+        public DbSet<Rabbit> rabbits { get; set; }
 		public DbSet<Book> Books { get; set; }
 		public DbSet<Person> Person { get; set; }
         public DbSet<Song> Songs { get; set; }
@@ -16,7 +17,7 @@ namespace EFCore
             base.OnConfiguring(optionsBuilder);
         // database = DemoDb
         // Initial Catalog=Demodb
-      optionsBuilder.UseSqlServer("Server=localhost;Database=demo;TrustServerCertificate=True;User ID=sa;Password=Sqlserver123");
+      optionsBuilder.UseSqlServer("Server=localhost;Database=Demo;TrustServerCertificate=True;User ID=sa;Password=Sqlserver123");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

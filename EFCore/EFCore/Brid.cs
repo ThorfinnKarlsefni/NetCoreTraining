@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EFCore
 {
     //[Table("T_brids", Schema = "demo")]
+    [Table("T_brids")]
     public class Brid
 	{
 		public int Id { get; set; }

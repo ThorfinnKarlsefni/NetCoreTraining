@@ -45,6 +45,29 @@ await using (MyDbContext ctx = new MyDbContext())
     ctx.Add(test);
     await ctx.SaveChangesAsync();
 
+    var book = new Book { AuthorName = "Ferrair", mins = "40", PubTime = new DateTime(2022, 11, 23), Price = 12.30, lyric = "we all make mistakes", Titile = "清白之年" };
+    Console.WriteLine(book.Id);
+    ctx.Add(book);
+    await ctx.SaveChangesAsync();
+    Console.WriteLine(book.Id);
+
+    //guid primary guid 算法是根据mac地址和时钟、网卡生成的全局唯一
+    //缺点: 磁盘占用空间大
+    //guid 不连续 使用guid做主键的时候 不能把主键设置为聚集索引
+    //因为聚集索引是按照顺序的保存主键 因此用guid性能差
+    //比如mysql的InnoDb主键是强制使用聚集索引的
+    // 有的数据库支持部分连续的guid 比如sql server
+    // 在sql server中 不要把guid主键设置为聚集索引
+    // 在mysql中插入频繁不要使用guid做主键
+
+    // add guid
+
+    var rabbit = new Rabbit { Name = "jonb" };
+    rabbit.Id = new Guid();
+    Console.WriteLine(rabbit.Id);
+    ctx.Add(rabbit);
+    await ctx.SaveChangesAsync();
+    Console.WriteLine(rabbit.Id);
     Console.ReadKey();
 
 }

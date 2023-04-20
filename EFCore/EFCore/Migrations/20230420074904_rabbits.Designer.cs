@@ -12,15 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20230420030401_brid_annotations")]
-    partial class brid_annotations
+    [Migration("20230420074904_rabbits")]
+    partial class rabbits
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("demo")
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -50,9 +49,21 @@ namespace EFCore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("lyric")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("mins")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("T_books", "demo");
+                    b.HasIndex("mins")
+                        .IsUnique();
+
+                    b.ToTable("T_books", (string)null);
                 });
 
             modelBuilder.Entity("EFCore.Person", b =>
@@ -76,7 +87,22 @@ namespace EFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("T_Persons", "demo");
+                    b.ToTable("T_Persons", (string)null);
+                });
+
+            modelBuilder.Entity("EFCore.Rabbit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_rabbits", (string)null);
                 });
 
             modelBuilder.Entity("EFCore.Song", b =>
@@ -98,7 +124,7 @@ namespace EFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("T_songs", "demo");
+                    b.ToTable("T_songs", (string)null);
                 });
 #pragma warning restore 612, 618
         }
