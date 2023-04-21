@@ -64,17 +64,61 @@ await using MyDbContext ctx = new MyDbContext();
 //    Console.WriteLine(user.Remark);
 //}
 
-// insert data
+//// insert data
 
-User u1 = new User { Name = "Cheung" };
-Apply apply = new Apply();
-apply.Requester = u1;
-apply.From = new DateTime(2021, 3, 23);
-apply.To = new DateTime(2022, 2, 28);
-apply.Remark = "你这点工资让我很难办啊";
-apply.Status = 0;
-ctx.Users.Add(u1);
-ctx.Applies.Add(apply);
+//User u1 = new User { Name = "Cheung" };
+//Apply apply = new Apply();
+//apply.Requester = u1;
+//apply.From = new DateTime(2021, 3, 23);
+//apply.To = new DateTime(2022, 2, 28);
+//apply.Remark = "你这点工资让我很难办啊";
+//apply.Status = 0;
+//ctx.Users.Add(u1);
+//ctx.Applies.Add(apply);
+//await ctx.SaveChangesAsync();
+
+
+
+OrgUnit orgRoot = new OrgUnit { Name = "top Song" };
+OrgUnit orgAsia = new OrgUnit { Name = "Asia" };
+orgAsia.Parent = orgRoot;
+orgRoot.Children.Add(orgAsia);
+OrgUnit orgSong6 = new OrgUnit { Name = "Unknown" };
+orgSong6.Parent = orgAsia;
+orgAsia.Children.Add(orgSong6);
+
+OrgUnit orgChina = new OrgUnit { Name = "China" };
+orgChina.Parent = orgRoot;
+orgRoot.Children.Add(orgChina);
+OrgUnit orgSong3 = new OrgUnit { Name = "绵绵" };
+OrgUnit orgSong4 = new OrgUnit { Name = "忘记时间" };
+orgSong3.Parent = orgChina;
+orgSong4.Parent = orgChina;
+orgChina.Children.Add(orgSong3);
+orgChina.Children.Add(orgSong4);
+
+OrgUnit orgCan = new OrgUnit { Name = "Canada" };
+orgCan.Parent = orgRoot;
+OrgUnit orgSong5 = new OrgUnit { Name = "Unknown" };
+orgSong5.Parent = orgCan;
+orgRoot.Children.Add(orgCan);
+orgCan.Children.Add(orgSong5);
+
+OrgUnit orgUsa = new OrgUnit { Name = "United States" };
+orgUsa.Parent = orgRoot;
+orgRoot.Children.Add(orgUsa);
+OrgUnit orgSong = new OrgUnit { Name = "see you agin" };
+OrgUnit orgSong1 = new OrgUnit { Name = "i really like you" };
+OrgUnit orgSong2 = new OrgUnit { Name = "Ferrari" };
+orgSong.Parent = orgUsa;
+orgSong1.Parent = orgUsa;
+orgSong2.Parent = orgUsa;
+orgUsa.Children.Add(orgSong);
+orgUsa.Children.Add(orgSong1);
+orgUsa.Children.Add(orgSong2);
+
+
+ctx.OrgUnits.Add(orgRoot);
 await ctx.SaveChangesAsync();
 
 Console.WriteLine("i will cherish tomorrow without you");
