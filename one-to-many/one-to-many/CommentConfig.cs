@@ -11,6 +11,7 @@ namespace one_to_many
             builder.ToTable("T_Comments");
             builder.Property(a => a.Message).IsRequired().HasMaxLength(100);
 
+            // HasForeignKey,select not use foreignkey comment table cloumn Article
             builder.HasOne<Article>(c => c.Article).WithMany(c => c.Comments).IsRequired().HasForeignKey(c => c.ArticleId);
         }
     }
