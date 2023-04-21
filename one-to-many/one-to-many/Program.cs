@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using one_to_many;
 
-Console.WriteLine("Hello, World!");
+//Console.WriteLine("Hello, World!");
 
 await using MyDbContext ctx = new MyDbContext();
 var a1 = new Article();
@@ -43,5 +43,26 @@ var a4 = ctx.Articles.Single(b => b.Id == 2);
 // select Id,Title from table;
 var a5 = ctx.Articles.Select(a => new { a.Id, a.Title }).First();
 Console.WriteLine(a5.Title, "+", a5.Id);
+
+/*    
+SELECT TOP(2) [t].[Id], [t].[Name]
+FROM [T_Users] AS [t]
+WHERE [t].[Name] = N'绵 绵
+*/
+
+User u = await ctx.Users.SingleOrDefaultAsync(u => u.Name == "绵绵");
+
+/*
+SELECT[t].[Id], [t].[ApproverId], [t].[From], [t].[Remark], [t].[RequesterId], [t].[Status], [t].[To]
+FROM[T_Applies] AS[t]
+      INNER JOIN[T_Users] AS [t0] ON[t].[RequesterId] = [t0].[Id]
+      WHERE 0 = 1
+*/
+
+foreach (var user in ctx.Applies.Where(a=>a.Requester == u))
+{
+    Console.WriteLine(user.Remark);
+}
+
 Console.WriteLine("i will cherish tomorrow without you");
 Console.Read();
