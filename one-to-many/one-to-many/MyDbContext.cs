@@ -10,7 +10,9 @@ namespace one_to_many
         public DbSet<User> Users { get; set; }
         public DbSet<Apply> Applies { get; set; }
         public DbSet<OrgUnit> OrgUnits { get; set; }
-
+        public DbSet<Addresses> Addresses { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
             string str = "Server=localhost;Database=Blog;TrustServerCertificate=True;User ID=sa;Password=Sqlserver123";
