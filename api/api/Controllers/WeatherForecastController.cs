@@ -30,7 +30,7 @@ public class WeatherForecastController : ControllerBase
         .ToArray();
     }
 
-    [HttpPost("SaveNode")]
+    [HttpPost]
     public string SaveNode(SaveNodRequest req)
     {
         string filename = $"{req.Title}.txt";
