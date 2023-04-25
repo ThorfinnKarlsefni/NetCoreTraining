@@ -1,5 +1,5 @@
 ﻿using System;
-namespace api
+namespace api.Models
 {
 	public record LoginResult(bool status, ProcessInfo[]? ProcessInfos);
 }

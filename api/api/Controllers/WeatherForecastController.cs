@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers;
 
@@ -30,6 +31,7 @@ public class WeatherForecastController : ControllerBase
         .ToArray();
     }
 
+    //[Route("SaveNode")]
     [HttpPost]
     public string SaveNode(SaveNodRequest req)
     {
