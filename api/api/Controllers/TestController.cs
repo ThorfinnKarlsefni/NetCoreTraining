@@ -35,6 +35,12 @@ namespace api.Controllers
             // 调用依赖注入
             return cal.Add(1, 2).ToString();
         }
+        [ResponseCache(Duration = 60)]
+        [HttpGet]
+        public DateTime Now()
+        {
+            return DateTime.Now;
+        }
     }
 }
 
