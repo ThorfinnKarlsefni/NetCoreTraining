@@ -14,19 +14,25 @@ namespace api.Controllers
     {
         private readonly Calculator cal;
 
+        /// <summary>
+        /// 依赖注入
+        /// </summary>
+        /// <returns></returns>
         public TestController(Calculator calculator)
         {
             this.cal = calculator;
         }
 
         /// <summary>
-        /// 依赖注入
-        /// 需要时注入使用[FromServices]
+        /// 缓存 60S 在header设置cache-control:max-age-60
+        /// 遵循RFC7324协议
         /// </summary>
         /// <returns></returns>
+        [ResponseCache(Duration = 60)]
         [HttpGet]
         public string Add()
         {
+            // 调用依赖注入
             return cal.Add(1, 2).ToString();
         }
     }
