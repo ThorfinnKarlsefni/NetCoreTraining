@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<Calculator>();
+// register memory
+builder.Services.AddMemoryCache();
 
 string[] urls = new[] { "http://localhost:5173" };
 
@@ -43,8 +45,6 @@ app.UseResponseCaching();
 
 // app.MapControllers
 app.MapControllers();
-
-
 
 app.Run();
 
