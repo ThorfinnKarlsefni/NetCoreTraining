@@ -55,6 +55,18 @@ namespace api.Controllers
             var book  = await memoryCahce.GetOrCreateAsync("book_" + id, async (e) =>
             {
                 Console.WriteLine("从数据库中读取数据");
+                // 设置10秒过期 绝对过期时间
+                //e.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
+                // 滑动过期时间 自动续命
+
+                // 缓存穿透就是 非法请求持续查询数据库为NULL的值
+                // GetOrCreateAsync 可以缓存NULL值
+                //e.SlidingExpiration = TimeSpan.FromSeconds(10);
+                // 缓存禁用 IQueryable, IEnumerable 两种类型 因为是延迟加载
+                // 可能出现把这两种类型的比那两指向的对象保存到缓存中
+                // 最好办法是生成一个随机时间 如果只使用绝对过期时间可能会出现缓存雪崩的问题
+                // 尽量使用 全局静态random 如果new一个会出现不随机的现象
+                e.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(Random.Shared.Next(10, 15));
                 return await GetByIdAsync(id);
             });
 
