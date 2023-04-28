@@ -12,7 +12,7 @@ await using (MyDbContext ctx = new MyDbContext())
     var b2 = new Book { AuthorName = "杨杨杨", Price = 1223, PubTime = new DateTime(2023, 11, 21), Titile = "给你的爱一直很安静" };
     ctx.Add(b2);
     await ctx.SaveChangesAsync();
-
+      
     // select query
     var books = ctx.Books.Where(b => b.AuthorName == "彭于晏");
     var items = ctx.Books.Where(b => b.Price > 10).GroupBy(b => b.AuthorName);
